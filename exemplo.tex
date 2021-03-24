@@ -1,0 +1,140 @@
+% !TEX TS-program = pdflatex
+%
+% Created by João Lourenço on 2021-03-23.
+% Copyright (c) 2021 .
+\documentclass[a4paper]{article}
+
+
+%-------------------------------------------------------------
+% Configuração do pacote "fctletterhead"
+%-------------------------------------------------------------
+\usepackage{fctletterhead}
+% \usepackage[everypage]{fctletterhead}
+\fctdepartment{Departamento de\\Informática}{Departament of\\Computer Science}
+\fctphone{+351 212 948 536}
+\fctext{10740}
+% \fctemail{joao.lourenco@fct.unl.pt}
+\fcturl{https://docentes.fct.unl.pt/joao-lourenco}
+\fctauthor{\theAuthor}
+\fctposition{Professor Associado}
+
+
+
+
+%-------------------------------------------------------------
+% Resto do docuemnto LaTeX
+%-------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[svgnames]{xcolor}
+\usepackage[portuguese]{babel}
+\usepackage[margin=3.0cm]{geometry}
+\usepackage{xltabular}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{allcolors=DarkBlue}
+
+
+\newcommand*{\theTitle}{O pacote \LaTeX\ \thePackage}
+\newcommand*{\theAuthor}{João M. Lourenço}
+\newcommand*{\thePackage}{\emph{“fctletterhead”}}
+
+\hypersetup{
+  pdftitle   = {\theTitle},
+  pdfsubject = {Departamento de Informática $|$ FCT-NOVA},
+  pdfauthor  = {\theAuthor}
+}
+
+\title{\theTitle}
+\author{\theAuthor}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}% Não imprimir número de página na primeira página
+
+\begin{abstract}
+    Este documento é simultaneamente um manual de instruções e um exemplo de como usar o pacote “\thePackage”.  Este pacote permite produzir documentos em \emph{papel letterhead} da FCT-NOVA.
+\end{abstract}
+
+
+\section{Preâmbulo}
+
+A versão mais recente deste pacote está disponível para download em:
+
+\begin{center}
+  \url{https://github.com/joaomlourenco/fctletterhead}
+\end{center}
+
+Se não tem a certeza se está a utilizar a versão mais recente, aproveite e \href{https://github.com/joaomlourenco/fctletterhead/archive/refs/heads/main.zip}{faça download} da última versão!   Já agora, se achar este pacote útil, \href{https://www.paypal.com/donate/?hosted_button_id=8WA8FRVMB78W8}{ofereça um café} ao meu alter-ego \emph{NOVAthesis} e na caixa de comentários diga que é para o pacote \thePackage! ;)
+
+
+\section{Ler o Pacote \thePackage}
+
+Na verdade é muito simples usar este pacote “\thePackage”…  basta adicionar no preâmbulo do ficheiro fonte, i.e., depois do \verb!\docuemntclass{…}! e antes do \verb!\begin{document}!, o seguinte comando:
+
+\begin{verbatim}
+  \usepackage{fctletterhead}
+\end{verbatim}
+
+\noindent onde apenas a primeira página será \emph{timbrada}; ou
+
+\begin{verbatim}
+  \usepackage[everypage]{fctletterhead}
+\end{verbatim}
+
+\noindent onde todas as páginas serão timbradas.
+
+\section{Configurar o Pacote \thePackage}
+
+Depois, ainda no preâmbulo, deverá configurar os seus dados e os do seu departamento
+
+\bgroup
+  \renewcommand{\arraystretch}{1.5}
+  \begin{xltabular}{\textwidth}{lX}
+    \verb+\fctdepartment+ & Este comando recebe dois argumentos, o primeiro com o nome do departamento em Português e o segundo com o nome do departamento em Inglês, a serem apresentados no canto superior direito (convertidos em maiúsculas).  \textbf{\textsl{Se omitido nada será apresentado em cima à direita.}}\\
+    \verb+\fctphone+   & Este comando recebe como argumento o telefone do autor, a colocar no rodapé (em baixo à direita). \textbf{\textsl{Se omitido apresentará o telefone geral da FCT-NOVA.}}\\
+    \verb+\fctext+   & Este comando recebe como argumento uma extensão telefónica, a colocar no rodapé à direita do telefone. \textbf{\textsl{Se omitido será apresentado apenas o número de telefone (sem extensão).}}\\
+    \verb+\fctemail+  & Este comando recebe como argumento um email, a colocar no rodapé por baixo do telefone/extensão. \textbf{\textsl{Se omitido nada será apresentado.}}\\
+    \verb+\fcturl+   & Este comando recebe como argumento um url, a colocar no rodapé por baixo do email. \textbf{\textsl{Se omitido nada será apresentado.}}\\
+    \verb+\fctauthor+     & Este comando recebe como argumento o nome do autor, a colocar na zona de assinatura.  \textbf{\textsl{Se omitido nada será apresentado.}}\\
+    \verb+\fctposition+   & Este comando recebe como argumento o cargo do autor (ou outro texto), a colocar na zona de assinatura, por baixo do nome.  Pode-se utilizar \verb+\\+ para partir este campo em várias linhas.\textbf{\textsl{Se omitido nada será apresentado.}}\\
+  \end{xltabular}
+\egroup
+
+\section{Configurar e Apresentar a Zona de Assinatura}
+
+Há também um comando para criar uma zona para colocar uma assinatura.  Este comando tem três argumentos, sendo que o primeiro (entre “[…]”) é opcional.
+
+\begin{verbatim}
+  \fctsignature[tamanho_da_linha]{posição_da_zona}{afastamento_do_texto_acima}
+\end{verbatim}
+
+\noindent onde:
+
+\medskip
+\bgroup
+  \renewcommand{\arraystretch}{1.5}
+  \begin{xltabular}{\textwidth}{lX}
+    \texttt{tamanho\_da\_linha}  & \emph{Opcional} — Indicação do tamanho da linha (em qualquer unidade válida no \LaTeX, por exemplo, \emph{6cm}, \emph{2in}, \emph{30pt}, etc).  \textbf{\textsl{Se omitido desenha uma linha com 5cm.}}\\
+    \texttt{posição\_da\_zona} & \emph{Obrigatório} — Indicação da localização da zona de assinatura.  Valores possíveis: 
+    \begin{tabular}[t]{>{\slshape\bfseries}ll}
+      l & zona de assinatura à esquerda;\\
+      c & zona de assinatura centrada; e\\
+      r & zona de assinatura à direita.\\
+    \end{tabular}\\
+    \texttt{afastamento\_do\_texto\_acima}  & \emph{Obrigatório} — Indicação do espaço a deixar para colocar a assinatura (em qualquer unidade válida no \LaTeX, por exemplo, \emph{3cm}, \emph{2.5in}, \emph{10ex}, etc).\\
+  \end{xltabular}
+\egroup
+
+A zona de assinatura que termina este documento, localizada em baixo à direita, foi criada com:
+
+\begin{verbatim}
+  \fctsignature[6cm]{r}{2cm}
+\end{verbatim}
+
+\fctsignature[6cm]{r}{2cm}
+
+
+\end{document}
+

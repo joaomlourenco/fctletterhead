@@ -1,0 +1,134 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% fctletterhead.sty
+%% A package for producing FCT-NOVA lettherhead paper
+%%
+%% This work is licensed under the
+%% The LaTeX project public license (LPPL), version 1.3c
+%% To view a copy of this license, visit
+%% https://www.latex-project.org/lppl/lppl-1-3c/
+%%
+\def\assocarrayname   {fctletterhead}
+\def\xstringversion   {1.0.0}
+%%
+\def\xstringdate      {2021-03-24}
+%%
+%% Departamento de Informática (www.di.fct.unl.pt)
+%% Faculdade de Ciências e Tecnologia (www.fct.unl.pt)
+%% Universidade NOVA de Lisboa (www.unl.pt)
+%%
+%% BUGS and SUGGESTIONS: please submit an issue at the project web page
+%%      at: https://github.com/joaomlourenco/fctletterhead/
+%%
+%% HELP: please DO NOT SEND ME EMAILS about LaTeX or the NOVAthesis template
+%%       please ask for help at GitHub Discussions page at
+%%          https://github.com/joaomlourenco/fctletterhead/discussions
+%%      or at the NOVAthesis facebook group at
+%%          https://www.facebook.com/groups/novathesis
+%%
+%%
+%% AUTHOR @github:
+%%      - joaomlourenco
+%%
+%%
+%% DONATIONS:
+%%     If you think this package is usefult to you, pease make a small
+%%     donation to my alterego NOVAthesos at
+%%          https://www.paypal.com/donate/?hosted_button_id=8WA8FRVMB78W8
+%%     and let me know in the comments box that it is for the “fctletterhead”
+%%     package.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{fctletterhead}[\xstringdate\space v\xstringversion\space, Joao Lourenco, Letterhead paper for FCT-NOVA]
+
+\newif\iffcteverypage
+% \fcteverypagefalse
+\DeclareOption{everypage}{\fcteverypagetrue}
+\DeclareOption*{\PackageWarning{letterheadfct}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+
+\newcommand*{\@fctsep}{2.4cm}
+\newcommand*{\@fctrulewidth}{5cm}
+
+\RequirePackage[svgnames]{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage[colorlinks]{hyperref}
+
+% defaults to empty department
+\def\@fctdepartmentpt{}
+\def\@fctdepartmenten{}
+% defaults to main phone number
+\def\@fctphone{+351 212 948 300}
+
+% empty hooks by default
+\def\@fcthookdepartment{}
+\def\@fcthookphone{}
+\def\@fcthookext{}
+\def\@fcthookemail{}
+\def\@fcthookurl{}
+\def\@fcthookname{}
+\def\@fcthookposition{}
+
+% commands
+\newcommand*{\fctdepartment}[3][]{\def\@fctdepartmentpt{#2}\def\@fctdepartmenten{#3}\def\@fcthookdepartment{#1}}
+\newcommand*{\fctphone}[2][]{\def\@fctphone{#2}\def\@fcthookphone{#1}}
+\newcommand*{\fctext}[2][]{\def\@fctext{#2}\def\@fcthookext{#1}}
+\newcommand*{\fctemail}[2][]{\def\@fctemail{#2}\def\@fcthookemail{#1}}
+\newcommand*{\fcturl}[2][]{\def\@fcturl{#2}\def\@fcthookurl{#1}}
+\newcommand*{\fctauthor}[2][]{\def\@fctauthor{#2}\def\@fcthookname{#1}}
+\newcommand*{\fctposition}[2][\small]{\def\@fctposition{#2}\def\@fcthookposition{#1}}
+
+% hook for every page
+\AddToHook {shipout/background}{%
+  \iffcteverypage% print logo in all pages
+    \letterhead
+  \else% print logo only in fisrt page
+    \ifnum\value{page}=1\relax
+      \letterhead
+    \fi
+  \fi
+}%
+
+
+\newcommand*{\letterhead}{%
+  \begin{tikzpicture}[remember picture,overlay]
+  \node[anchor=north west,yshift=-0.85cm,xshift=\@fctsep]%
+      at (current page.north west)
+      {\includegraphics[width=4.25cm]{NOVA_CMYK_SASSIN_VERT_POSIT_85_225mm}};
+  \node[anchor=north east,yshift=-1.3cm,xshift=-\@fctsep]%
+      at (current page.north east)
+      {\sffamily\bfseries\footnotesize\@fcthookdepartment\begin{minipage}{10cm}\raggedleft~\MakeUppercase{\@fctdepartmentpt}\\[2mm]
+        \color{gray}~\MakeUppercase{\@fctdepartmenten}\end{minipage}};
+  \node[anchor=south east,yshift=1.0cm,xshift=-\@fctsep]%
+      at (current page.south east)
+      {\hypersetup{hidelinks}\renewcommand{\arraystretch}{1.2}\scriptsize\color{darkgray}
+       \begin{tabular}{r@{}}
+        Campus de Caparica\\
+        2829-516 CAPARICA | Portugal\\
+        \ifdefined\@fctphone\@fcthookphone T:~\@fctphone
+          \ifdefined\@fctext\@fcthookext~$|$~Ext: \@fctext\fi\\\fi
+        \ifdefined\@fctemail\@fcthookemail\url{\@fctemail}\\\fi
+        \ifdefined\@fcturl\@fcthookurl\url{\@fcturl}\\\fi
+       \end{tabular}};
+  \end{tikzpicture}
+}
+
+\newcommand*{\fctsignature}[3][\@fctrulewidth]{
+  % #1 = rule length
+  % #2 = alignment
+  % #3 = vertical spacing
+  \vspace*{#3}
+  \noindent\begin{minipage}{\linewidth}
+    \if#2l\relax\raggedright\fi
+    \if#2c\relax\centering\fi
+    \if#2r\relax\raggedleft\fi
+    \begin{minipage}{#1}
+      \centering%
+      \rule{#1}{0.5pt}%
+      \ifdefined\@fctauthor\@fcthookname\\[0.5ex]\@fctauthor\fi
+      \ifdefined\@fctposition\@fcthookposition\\[0.5ex]\@fctposition\fi
+    \end{minipage}
+  \end{minipage}\par\bigskip
+}
