@@ -6,17 +6,30 @@
 
 
 %-------------------------------------------------------------
-% Configuração do pacote "fctletterhead"
+% Configuração do pacote "novafctletterhead"
 %-------------------------------------------------------------
-% \usepackage{fctletterhead}
-\usepackage[everypage]{fctletterhead}
-\fctdepartment{Departamento de\\Informática}{Departament of\\Computer Science}
+% \usepackage{novafctletterhead}
+\usepackage[everypage]{novafctletterhead}
+% \fctdepartment{Departamento de\\Ciência dos Materiais}{Department of\\Materials Science}
+% \fctdepartment{Departamento de\\Ciências Sociais Aplicadas}{Department of\\Applied Social Sciences}
+% \fctdepartment{Departamento de\\Ciências da Terra}{Department of\\Earth Sciences}
+% \fctdepartment{Departamento de\\Ciências da Vida}{Department of\\Life Sciences}
+% \fctdepartment{Departamento de\\Ciências e Engenharia do Ambiente}{Department of\\Environmental Sciences and Engineering}
+% \fctdepartment{Departamento de\\Ciências e Tecnologia da Biomassa}{Department of\\Sciences and Technology of Biomass}
+% \fctdepartment{Departamento de\\Conservação e Restauro}{Department of\\Conservation and Restoration}
+% \fctdepartment{Departamento de\\Engenharia Civil}{Department of\\Civil Engineering}
+% \fctdepartment{Departamento de Engenharia\\Eletrotécnica e de Computadores}{Department of Electrical\\and Computer Engineering}
+% \fctdepartment{Departamento de\\Engenharia Mecânica e Industrial}{Department of\\Mechanical and Industrial Engineering}
+% \fctdepartment{Departamento de\\Física}{Department of\\Physics}
+\fctdepartment{Departamento de\\Informática}{Department of\\Computer Science}
+% \fctdepartment{Departamento de\\Matemática}{Department of\\Mathematics}
+% \fctdepartment{Departamento de\\Química}{Department of\\Chemistry}
 \fctphone{+351 212 948 536}
 % \fctext{10740}
 % \fctemail{joao.lourenco@fct.unl.pt}
 % \fcturl{https://docentes.fct.unl.pt/joao-lourenco}
-\fctauthor{\theAuthor}
-\fctposition{Professor Associado}
+\fctauthor{\LARGE\textcalligra{\theAuthor}}
+\fctposition{\thePosition}
 
 
 
@@ -24,19 +37,20 @@
 %-------------------------------------------------------------
 % Resto do docuemnto LaTeX
 %-------------------------------------------------------------
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[svgnames]{xcolor}
+\usepackage{calligra}
 \usepackage[portuguese]{babel}
-% \usepackage[margin=3.0cm]{geometry}
 \usepackage{xltabular}
 \usepackage[colorlinks]{hyperref}
-\hypersetup{allcolors=DarkBlue}
+\hypersetup{allcolors=blue!65!black}
+% \geometry{hmargin=2.0cm,vmargin=2.5cm}
 
 
 \newcommand*{\theTitle}{O pacote \LaTeX\ \thePackage}
 \newcommand*{\theAuthor}{João M. Lourenço}
-\newcommand*{\thePackage}{\emph{“fctletterhead”}}
+\newcommand*{\thePosition}{Professor Associado}
+\newcommand*{\thePackage}{“\texttt{novafctletterhead}”}
+
 
 \hypersetup{
   pdftitle   = {\theTitle},
@@ -63,24 +77,24 @@
 A versão mais recente deste pacote está disponível para download em:
 
 \begin{center}
-  \url{https://github.com/joaomlourenco/fctletterhead}
+  \url{https://github.com/joaomlourenco/novafctletterhead}
 \end{center}
 
-Se não tem a certeza se está a utilizar a versão mais recente, aproveite e \href{https://github.com/joaomlourenco/fctletterhead/archive/refs/heads/main.zip}{faça download} da última versão!   Já agora, se achar este pacote útil, \href{https://www.paypal.com/donate/?hosted_button_id=8WA8FRVMB78W8}{ofereça um café} ao meu alter-ego \emph{NOVAthesis} e na caixa de comentários diga que é para o pacote \thePackage! ;)
+Se não tem a certeza se está a utilizar a versão mais recente, aproveite e \href{https://github.com/joaomlourenco/novafctletterhead/archive/refs/heads/main.zip}{faça download} da última versão!   Já agora, se achar este pacote útil, \href{https://www.paypal.com/donate/?hosted_button_id=8WA8FRVMB78W8}{ofereça um café} ao meu alter-ego \emph{NOVAthesis} e na caixa de comentários diga que é para o pacote \thePackage! ;)
 
 
-\section{Ler o Pacote \thePackage}
+\section{Usar o Pacote \thePackage}
 
-Na verdade é muito simples usar este pacote “\thePackage”…  basta adicionar no preâmbulo do ficheiro fonte, i.e., depois do \verb!\docuemntclass{…}! e antes do \verb!\begin{document}!, o seguinte comando:
+Na verdade é muito simples usar este pacote \thePackage…  basta adicionar no preâmbulo do ficheiro fonte, i.e., depois do \verb!\docuemntclass{…}! e antes do \verb!\begin{document}!, o seguinte comando:
 
 \begin{verbatim}
-  \usepackage{fctletterhead}
+  \usepackage{novafctletterhead}
 \end{verbatim}
 
 \noindent onde apenas a primeira página será \emph{timbrada}; ou
 
 \begin{verbatim}
-  \usepackage[everypage]{fctletterhead}
+  \usepackage[everypage]{novafctletterhead}
 \end{verbatim}
 
 \noindent onde todas as páginas serão timbradas.
@@ -117,7 +131,7 @@ Há também um comando para criar uma zona para colocar uma assinatura.  Este co
   \renewcommand{\arraystretch}{1.5}
   \begin{xltabular}{\textwidth}{lX}
     \texttt{tamanho\_da\_linha}  & \emph{Opcional} — Indicação do tamanho da linha (em qualquer unidade válida no \LaTeX, por exemplo, \emph{6cm}, \emph{2in}, \emph{30pt}, etc).  \textbf{\textsl{Se omitido desenha uma linha com 5cm.}}\\
-    \texttt{posição\_da\_zona} & \emph{Obrigatório} — Indicação da localização da zona de assinatura.  Valores possíveis: 
+    \texttt{posição\_da\_zona} & \emph{Obrigatório} — Indicação da localização da zona de assinatura.  Valores possíveis:\newline
     \begin{tabular}[t]{>{\slshape\bfseries}ll}
       l & zona de assinatura à esquerda;\\
       c & zona de assinatura centrada; e\\
@@ -130,10 +144,11 @@ Há também um comando para criar uma zona para colocar uma assinatura.  Este co
 A zona de assinatura que termina este documento, localizada em baixo à direita, foi criada com:
 
 \begin{verbatim}
-  \fctsignature[6cm]{r}{2cm}
+  \fctsignature{r}{2cm}
 \end{verbatim}
 
-\fctsignature[6cm]{r}{2cm}
+\fctsignature{r}{2cm}
+% \fctsignature[7cm]{r}{2cm}
 
 
 \end{document}

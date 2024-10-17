@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% fctletterhead.sty
+%% novafctletterhead.sty
 %% A package for producing FCT-NOVA lettherhead paper
 %%
 %% This work is licensed under the
@@ -7,23 +7,21 @@
 %% To view a copy of this license, visit
 %% https://www.latex-project.org/lppl/lppl-1-3c/
 %%
-\def\assocarrayname   {fctletterhead}
-\def\xstringversion   {1.0.0}
+\def\assocarrayname   {novafctletterhead}
+\def\xstringversion   {1.0.1}
 %%
-\def\xstringdate      {2021-03-24}
+\def\xstringdate      {2024-10-17}
 %%
 %% Departamento de Informática (www.di.fct.unl.pt)
 %% Faculdade de Ciências e Tecnologia (www.fct.unl.pt)
 %% Universidade NOVA de Lisboa (www.unl.pt)
 %%
 %% BUGS and SUGGESTIONS: please submit an issue at the project web page
-%%      at: https://github.com/joaomlourenco/fctletterhead/
+%%      at: https://github.com/joaomlourenco/novafctletterhead/
 %%
-%% HELP: please DO NOT SEND ME EMAILS about LaTeX or the NOVAthesis template
+%% HELP: please DO NOT SEND ME EMAILS about LaTeX or this template
 %%       please ask for help at GitHub Discussions page at
-%%          https://github.com/joaomlourenco/fctletterhead/discussions
-%%      or at the NOVAthesis facebook group at
-%%          https://www.facebook.com/groups/novathesis
+%%          https://github.com/joaomlourenco/novafctletterhead/discussions
 %%
 %%
 %% AUTHOR @github:
@@ -32,15 +30,15 @@
 %%
 %% DONATIONS:
 %%     If you think this package is usefult to you, pease make a small
-%%     donation to my alterego NOVAthesos at
+%%     donation to my alterego NOVAthesis at
 %%          https://www.paypal.com/donate/?hosted_button_id=8WA8FRVMB78W8
-%%     and let me know in the comments box that it is for the “fctletterhead”
+%%     and let me know in the comments box that it is for the “novafctletterhead”
 %%     package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{fctletterhead}[\xstringdate\space v\xstringversion\space, Joao Lourenco, Letterhead paper for FCT-NOVA]
+\ProvidesPackage{novafctletterhead}[\xstringdate\space v\xstringversion\space, Joao Lourenco, Letterhead paper for NOVA FCT]
 
 \newif\iffcteverypage
 % \fcteverypagefalse
@@ -49,13 +47,13 @@
 \ProcessOptions\relax
 
 \newcommand*{\@fctsep}{2.4cm}
-\newcommand*{\@fctrulewidth}{5cm}
 
-\RequirePackage[svgnames]{xcolor}
-\RequirePackage{graphicx}
-\RequirePackage{tikz}
-\RequirePackage[colorlinks]{hyperref}
-\RequirePackage[hmargin=3cm,vmargin={4cm,3cm}]{geometry}
+\IfPackageLoadedTF{xcolor }{}{\RequirePackage[svgnames]{xcolor}}
+\IfPackageLoadedTF{graphicx }{}{\RequirePackage{graphicx}}
+\IfPackageLoadedTF{tikz }{}{\RequirePackage{tikz}}
+\IfPackageLoadedTF{hyperref }{}{\RequirePackage[colorlinks]{hyperref}}
+\IfPackageLoadedTF{geometry }{}{\RequirePackage{geometry}}
+\geometry{hmargin=3cm,vmargin={4cm,3cm}}
 
 % defaults to empty department
 \def\@fctdepartmentpt{}
@@ -69,7 +67,7 @@
 \def\@fcthookext{}
 \def\@fcthookemail{}
 \def\@fcthookurl{}
-\def\@fcthookname{}
+\def\@fcthookauthor{}
 \def\@fcthookposition{}
 
 % commands
@@ -78,7 +76,7 @@
 \newcommand*{\fctext}[2][]{\def\@fctext{#2}\def\@fcthookext{#1}}
 \newcommand*{\fctemail}[2][]{\def\@fctemail{#2}\def\@fcthookemail{#1}}
 \newcommand*{\fcturl}[2][]{\def\@fcturl{#2}\def\@fcthookurl{#1}}
-\newcommand*{\fctauthor}[2][]{\def\@fctauthor{#2}\def\@fcthookname{#1}}
+\newcommand*{\fctauthor}[2][]{\def\@fctauthor{#2}\def\@fcthookauthor{#1}}
 \newcommand*{\fctposition}[2][\small]{\def\@fctposition{#2}\def\@fcthookposition{#1}}
 
 % hook for every page
@@ -116,7 +114,32 @@
   \end{tikzpicture}
 }
 
-\newcommand*{\fctsignature}[3][\@fctrulewidth]{
+\newcommand*{\@fctoneauthor}[3][]{%
+% #1 = rule length
+% #2 = author name
+% #3 = author position
+  \ifx&#1&%
+    % #1 is empty
+    \setbox0\hbox{\qquad#2\qquad}%
+    \setbox1\hbox{\qquad#3\qquad}%
+    \ifdim\wd0>\wd1%
+      \def\@fctwd{\wd0}%
+    \else
+      \def\@fctwd{\wd1}%
+    \fi
+  \else%
+    % #1 is nonempty
+    \def\@fctwd{#1}
+  \fi%
+  \begin{minipage}[t]{\@fctwd}%
+    \centering%
+    \rule{\@fctwd}{0.5pt}%
+    \ifdefined\@fctauthor\@fcthookauthor\\[0.5ex]\@fctauthor\fi%
+    \ifdefined\@fctposition\@fcthookposition\\[0.5ex]\@fctposition\fi%
+  \end{minipage}%
+}
+
+\newcommand*{\fctsignature}[3][]{
   % #1 = rule length
   % #2 = alignment
   % #3 = vertical spacing
@@ -125,11 +148,6 @@
     \if#2l\relax\raggedright\fi
     \if#2c\relax\centering\fi
     \if#2r\relax\raggedleft\fi
-    \begin{minipage}{#1}
-      \centering%
-      \rule{#1}{0.5pt}%
-      \ifdefined\@fctauthor\@fcthookname\\[0.5ex]\@fctauthor\fi
-      \ifdefined\@fctposition\@fcthookposition\\[0.5ex]\@fctposition\fi
-    \end{minipage}
+    \@fctoneauthor[#1]{\@fctauthor}{\@fctposition}%
   \end{minipage}\par\bigskip
 }

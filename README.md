@@ -1,4 +1,4 @@
-# fctletterhead
+# novafctletterhead
 
 Letterhead paper for FCT-NOVA (NOVA School of Science and Technology)
 
@@ -6,18 +6,18 @@ Letterhead paper for FCT-NOVA (NOVA School of Science and Technology)
 
 A versão mais recente deste pacote está disponível para download em:
 
-https://github.com/joaomlourenco/fctletterhead
+https://github.com/joaomlourenco/novafctletterhead
 
-Se não tem a certeza se está a utilizar a versão mais recente, aproveite e [faça download](https://github.com/joaomlourenco/fctletterhead/archive/refs/heads/main.zip) da última versão!   Já agora, se achar este pacote útil, [ofereça um café](https://www.paypal.com/donate/?hosted_button_id=8WA8FRVMB78W8) ao meu alter-ego *NOVAthesis* e na caixa de comentários diga que é para o pacote “*fctletterhead*”! ;)
+Se não tem a certeza se está a utilizar a versão mais recente, aproveite e [faça download](https://github.com/joaomlourenco/novafctletterhead/archive/refs/heads/main.zip) da última versão!   Já agora, se achar este pacote útil, [ofereça um café](https://www.paypal.com/donate/?hosted_button_id=8WA8FRVMB78W8) ao meu alter-ego *NOVAthesis* e na caixa de comentários diga que é para o pacote “*novafctletterhead*”! ;)
 
 
-## Ler o Pacote “*fctletterhead*”
+## Ler o Pacote “*novafctletterhead*”
 
-Na verdade é muito simples usar este pacote ““*fctletterhead*””…  basta adicionar no preâmbulo do ficheiro fonte, i.e., depois do `\docuemntclass{…}` e antes do `\begin{document}`, o seguinte comando:
+Na verdade é muito simples usar este pacote ““*novafctletterhead*””…  basta adicionar no preâmbulo do ficheiro fonte, i.e., depois do `\docuemntclass{…}` e antes do `\begin{document}`, o seguinte comando:
 
 ```latex
 \begin{verbatim}
-  \usepackage{fctletterhead}
+  \usepackage{novafctletterhead}
 \end{verbatim}
 ```
 
@@ -25,13 +25,13 @@ onde apenas a primeira página será *timbrada*; ou
 
 ```latex
 \begin{verbatim}
-  \usepackage[everypage]{fctletterhead}
+  \usepackage[everypage]{novafctletterhead}
 \end{verbatim}
 ```
 
 onde todas as páginas serão timbradas.
 
-## Configurar o Pacote “*fctletterhead*”
+## Configurar o Pacote “*novafctletterhead*”
 
 Depois, ainda no preâmbulo, deverá configurar os seus dados e os do seu departamento
 
