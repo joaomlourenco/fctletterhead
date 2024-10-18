@@ -10,6 +10,8 @@
 %-------------------------------------------------------------
 % \usepackage{novafctletterhead}
 \usepackage[everypage]{novafctletterhead}
+
+
 % \fctdepartment{Departamento de\\Ciência dos Materiais}{Department of\\Materials Science}
 % \fctdepartment{Departamento de\\Ciências Sociais Aplicadas}{Department of\\Applied Social Sciences}
 % \fctdepartment{Departamento de\\Ciências da Terra}{Department of\\Earth Sciences}
@@ -28,8 +30,7 @@
 % \fctext{10740}
 % \fctemail{joao.lourenco@fct.unl.pt}
 % \fcturl{https://docentes.fct.unl.pt/joao-lourenco}
-\fctauthor{\LARGE\textcalligra{\theAuthor}}
-\fctposition{\thePosition}
+\authorsignaturefont{\LARGE\calligra}
 
 
 
@@ -45,27 +46,29 @@
 \hypersetup{allcolors=blue!65!black}
 % \geometry{hmargin=2.0cm,vmargin=2.5cm}
 
+\newcommand*{\thePackage}{\texttt{novafctletterhead}}
 
-\newcommand*{\theTitle}{O pacote \LaTeX\ \thePackage}
-\newcommand*{\theAuthor}{João M. Lourenço}
-\newcommand*{\thePosition}{Professor Associado}
-\newcommand*{\thePackage}{“\texttt{novafctletterhead}”}
-
-
-\hypersetup{
-  pdftitle   = {\theTitle},
-  pdfsubject = {Departamento de Informática $|$ FCT-NOVA},
-  pdfauthor  = {\theAuthor}
-}
+\fcttitle{O pacote \LaTeX\ \thePackage}
+\fctauthor{João M. Lourenço, Professor Associado}
+% \fctauthor{John Doe, Professor Auxiliar}
+% \fctauthor{Alice Doe, Professora Catedrático}
 
 \title{\theTitle}
 \author{\theAuthor}
 
+\hypersetup{
+  pdftitle   = {\theTitle},
+  pdfsubject = {\theDepartment $|$ NOVA FCT},
+  pdfauthor  = {\theAuthor}
+}
+
+
+% The document
 \begin{document}
 
 \maketitle
 
-\thispagestyle{empty}% Não imprimir número de página na primeira página
+% \thispagestyle{empty}% Não imprimir número de página na primeira página
 
 \begin{abstract}
     Este documento é simultaneamente um manual de instruções e um exemplo de como usar o pacote “\thePackage”.  Este pacote permite produzir documentos em \emph{papel letterhead} da FCT-NOVA.
@@ -111,8 +114,7 @@ Depois, ainda no preâmbulo, deverá configurar os seus dados e os do seu depart
     \verb+\fctext+   & Este comando recebe como argumento uma extensão telefónica, a colocar no rodapé à direita do telefone. \textbf{\textsl{Se omitido será apresentado apenas o número de telefone (sem extensão).}}\\
     \verb+\fctemail+  & Este comando recebe como argumento um email, a colocar no rodapé por baixo do telefone/extensão. \textbf{\textsl{Se omitido nada será apresentado.}}\\
     \verb+\fcturl+   & Este comando recebe como argumento um url, a colocar no rodapé por baixo do email. \textbf{\textsl{Se omitido nada será apresentado.}}\\
-    \verb+\fctauthor+     & Este comando recebe como argumento o nome do autor, a colocar na zona de assinatura.  \textbf{\textsl{Se omitido nada será apresentado.}}\\
-    \verb+\fctposition+   & Este comando recebe como argumento o cargo do autor (ou outro texto), a colocar na zona de assinatura, por baixo do nome.  Pode-se utilizar \verb+\\+ para partir este campo em várias linhas.\textbf{\textsl{Se omitido nada será apresentado.}}\\
+    \verb+\fctauthor+     & Este comando recebe como argumento o nome do autor e, opcionalmente, o título/posição, a colocar na zona de assinatura.  \textbf{\textsl{Se omitido nada será apresentado.  Se usado múltiplas vezes, criará zonas de assinatura para cada um dos autores.}}\\
   \end{xltabular}
 \egroup
 
@@ -130,7 +132,7 @@ Há também um comando para criar uma zona para colocar uma assinatura.  Este co
 \bgroup
   \renewcommand{\arraystretch}{1.5}
   \begin{xltabular}{\textwidth}{lX}
-    \texttt{tamanho\_da\_linha}  & \emph{Opcional} — Indicação do tamanho da linha (em qualquer unidade válida no \LaTeX, por exemplo, \emph{6cm}, \emph{2in}, \emph{30pt}, etc).  \textbf{\textsl{Se omitido desenha uma linha com 5cm.}}\\
+    \texttt{tamanho\_da\_linha}  & \emph{Opcional} — Indicação do tamanho da linha (em qualquer unidade válida no \LaTeX, por exemplo, \emph{6cm}, \emph{2in}, \emph{30pt}, etc).  \textbf{\textsl{Se omitido desenha uma linha ligeiramente mais larga que o nome/posição.}}\\
     \texttt{posição\_da\_zona} & \emph{Obrigatório} — Indicação da localização da zona de assinatura.  Valores possíveis:\newline
     \begin{tabular}[t]{>{\slshape\bfseries}ll}
       l & zona de assinatura à esquerda;\\
@@ -144,10 +146,12 @@ Há também um comando para criar uma zona para colocar uma assinatura.  Este co
 A zona de assinatura que termina este documento, localizada em baixo à direita, foi criada com:
 
 \begin{verbatim}
-  \fctsignature{r}{2cm}
+  \fctauthor{João M. Lourenço, Professor Associado}
+  ...
+  \fctsignature{r}{1.5cm}
 \end{verbatim}
 
-\fctsignature{r}{2cm}
+\fctsignature{r}{1.5cm}
 % \fctsignature[7cm]{r}{2cm}
 
 
