@@ -41,13 +41,17 @@
 \ProvidesPackage{novafctletterhead}[\xstringdate\space v\xstringversion\space, Joao Lourenco, Letterhead paper for NOVA FCT]
 
 \newif\iffcteverypage
-% \fcteverypagefalse
 \DeclareOption{everypage}{\fcteverypagetrue}
+\newif\iffctopensans
+\DeclareOption{opensans}{\fctopensanstrue}
 \DeclareOption*{\PackageWarning{letterheadfct}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 
 \newcommand*{\@fctsep}{2.4cm}
 
+\iffctopensans
+\IfPackageLoadedTF{opensans}{}{\RequirePackage[default,oldstyle,scale=0.95]{opensans}}
+\fi
 \IfPackageLoadedTF{xcolor}{}{\RequirePackage[svgnames]{xcolor}}
 \IfPackageLoadedTF{graphicx}{}{\RequirePackage{graphicx}}
 \IfPackageLoadedTF{tikz}{}{\RequirePackage{tikz}}
