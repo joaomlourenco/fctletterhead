@@ -41,6 +41,7 @@
 %-------------------------------------------------------------
 \usepackage[T1]{fontenc}
 \usepackage{calligra}
+\usepackage{courier}
 \usepackage[portuguese]{babel}
 \usepackage{xltabular}
 \usepackage[colorlinks]{hyperref}
@@ -92,16 +93,21 @@ Se não tem a certeza se está a utilizar a versão mais recente, aproveite e \h
 Na verdade é muito simples usar este pacote \thePackage…  basta adicionar no preâmbulo do ficheiro fonte, i.e., depois do \verb!\docuemntclass{…}! e antes do \verb!\begin{document}!, o seguinte comando:
 
 \begin{verbatim}
-  \usepackage{novafctletterhead}
+  \usepackage[opções]{novafctletterhead}
 \end{verbatim}
 
-\noindent onde apenas a primeira página será \emph{timbrada}; ou
+\noindent onde, por omissão, apenas a primeira página será timbrada.
 
-\begin{verbatim}
-  \usepackage[everypage]{novafctletterhead}
-\end{verbatim}
+\medskip
+As opções válidas são:\vspace{-1.5ex}
 
-\noindent onde todas as páginas serão timbradas.
+\bgroup
+  \renewcommand{\arraystretch}{1.5}
+  \begin{xltabular}{\textwidth}{lX}
+    \texttt{everypage}  & Todas as páginas serão timbradas e não apenas a primeira.\\
+    \texttt{opensans} & Utilizar a fonte \emph{OpenSans}, que é uma das fontes oficiais/recomendadas da NOVA FCT.\\
+  \end{xltabular}
+\egroup
 
 \section{Configurar o Pacote \thePackage}
 
@@ -124,7 +130,7 @@ Depois, ainda no preâmbulo, deverá configurar os seus dados e os do seu depart
 Há também um comando para criar uma zona para colocar uma assinatura.  Este comando tem três argumentos, sendo que o primeiro (entre “[…]”) é opcional.
 
 \begin{verbatim}
-  \fctsignature[tamanho_da_linha]{posição_da_zona}{afastamento_do_texto_acima}
+  \fctsignature[tamanho_da_linha]{posição}{afastamento}
 \end{verbatim}
 
 \noindent onde:
@@ -134,13 +140,13 @@ Há também um comando para criar uma zona para colocar uma assinatura.  Este co
   \renewcommand{\arraystretch}{1.5}
   \begin{xltabular}{\textwidth}{lX}
     \texttt{tamanho\_da\_linha}  & \emph{Opcional} — Indicação do tamanho da linha (em qualquer unidade válida no \LaTeX, por exemplo, \emph{6cm}, \emph{2in}, \emph{30pt}, etc).  \textbf{\textsl{Se omitido desenha uma linha ligeiramente mais larga que o nome/posição.}}\\
-    \texttt{posição\_da\_zona} & \emph{Obrigatório} — Indicação da localização da zona de assinatura.  Valores possíveis:\newline
+    \texttt{posição} & \emph{Obrigatório} — Indicação da localização da zona de assinatura.  Valores possíveis:\newline
     \begin{tabular}[t]{>{\slshape\bfseries}ll}
       l & zona de assinatura à esquerda;\\
       c & zona de assinatura centrada; e\\
       r & zona de assinatura à direita.\\
     \end{tabular}\\
-    \texttt{afastamento\_do\_texto\_acima}  & \emph{Obrigatório} — Indicação do espaço a deixar para colocar a assinatura (em qualquer unidade válida no \LaTeX, por exemplo, \emph{3cm}, \emph{2.5in}, \emph{10ex}, etc).\\
+    \texttt{afastamento}  & \emph{Obrigatório} — Indicação do espaço a deixar entre o final do texto e a zona de assinatura (em qualquer unidade válida no \LaTeX, por exemplo, \emph{3cm}, \emph{2.5in}, \emph{10ex}, etc).\\
   \end{xltabular}
 \egroup
 
