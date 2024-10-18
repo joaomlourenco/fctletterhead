@@ -1,6 +1,6 @@
 # novafctletterhead
 
-Letterhead paper for FCT-NOVA (NOVA School of Science and Technology)
+Papel timbrado para a NOVA School of Science and Technology | NOVA FCT
 
 ## Preâmbulo
 
@@ -38,12 +38,11 @@ Depois, ainda no preâmbulo, deverá configurar os seus dados e os do seu depart
 | Opção | Efeito |
 |----------|----------|
 | \fctdepartment | Este comando recebe dois argumentos, o primeiro com o nome do departamento em Português e o segundo com o nome do departamento em Inglês, a serem apresentados no canto superior direito (convertidos em maiúsculas).  *Se omitido nada será apresentado em cima à direita.*|
-| \fctphone+   | Este comando recebe como argumento o telefone do autor, a colocar no rodapé (em baixo à direita). *Se omitido apresentará o telefone geral da FCT-NOVA.*|
+| \fctphone   | Este comando recebe como argumento o telefone do autor, a colocar no rodapé (em baixo à direita). *Se omitido apresentará o telefone geral da FCT-NOVA.*|
 | \fctext   | Este comando recebe como argumento uma extensão telefónica, a colocar no rodapé à direita do telefone. *Se omitido será apresentado apenas o número de telefone (sem extensão).*|
 | \fctemail  | Este comando recebe como argumento um email, a colocar no rodapé por baixo do telefone/extensão. *Se omitido nada será apresentado.*|
 | \fcturl   | Este comando recebe como argumento um url, a colocar no rodapé por baixo do email. *Se omitido nada será apresentado.*|
-| \fctauthor     | Este comando recebe como argumento o nome do autor, a colocar na zona de assinatura.  *Se omitido nada será apresentado.*|
-| \fctposition   | Este comando recebe como argumento o cargo do autor (ou outro texto), a colocar na zona de assinatura, por baixo do nome.  Pode-se utilizar `\\` para partir este campo em várias linhas.*Se omitido nada será apresentado.*|
+| \fctauthor     | Este comando recebe como argumento o nome do autor e, opcionalmente, o título/posição, a colocar na zona de assinatura.  *Se omitido nada será apresentado.  Se usado múltiplas vezes, criará zonas de assinatura para cada um dos autores.*|
 
 
 ## Configurar e Apresentar a Zona de Assinatura
@@ -68,6 +67,8 @@ A zona de assinatura que termina este documento, localizada em baixo à direita,
 
 ```latex
 \begin{verbatim}
-  \fctsignature[6cm]{r}{2cm}
+  \fctauthor{João M. Lourenço, Professor Associado}
+  ...
+  \fctsignature{r}{1.5cm}
 \end{verbatim}
 ```
