@@ -7,10 +7,10 @@
 %% To view a copy of this license, visit
 %% https://www.latex-project.org/lppl/lppl-1-3c/
 %%
-\def\assocarrayname   {novafctletterhead}
-\def\xstringversion   {1.1.0}
+\def\novafctletterheadname    {novafctletterhead}
+\def\novafctversion           {1.1.1}
 %%
-\def\xstringdate      {2024-10-18}
+\def\novafctdate              {2024-10-18}
 %%
 %% Departamento de Informática (www.di.fct.unl.pt)
 %% Faculdade de Ciências e Tecnologia (www.fct.unl.pt)
@@ -38,7 +38,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{novafctletterhead}[\xstringdate\space v\xstringversion\space, Joao Lourenco, Letterhead paper for NOVA FCT]
+\ProvidesPackage{novafctletterhead}[\novafctdate\space v\novafctversion\space, Joao Lourenco, Letterhead paper for NOVA FCT]
 
 \newif\iffcteverypage
 \DeclareOption{everypage}{\fcteverypagetrue}
@@ -92,10 +92,10 @@
   \xappto\@fctauthorposition{{#1},}%
 }
 \newcommand*{\fcttitle}[2][]{\gdef\theTitle{#2}\def\@fcthooktitle{#1}}
-\def\@authorsignaturefont{\small}
-\newcommand*{\authorsignaturefont}[1]{\def\@authorsignaturefont{#1}}
-\def\@positionsignaturefont{}
-\newcommand*{\positionsignaturefont}[1]{\def\@positionsignaturefont{#1}}
+\def\@fctauthorsigfont{}
+\newcommand*{\fctauthorsigfont}[1]{\def\@fctauthorsigfont{#1}}
+\def\@fctpositionsigfont{\scriptsize}
+\newcommand*{\fctpositionsigfont}[1]{\def\@fctpositionsigfont{#1}}
 
 % hook for every page
 \AddToHook {shipout/background}{%
@@ -139,8 +139,8 @@
 % #3 = author position
   \ifx&#1&%
     % #1 is empty
-    \setbox0\hbox{\qquad\@authorsignaturefont#2\qquad}%
-    \setbox1\hbox{\qquad\@positionsignaturefont#3\qquad}%
+    \setbox0\hbox{\qquad\@fctauthorsigfont#2\qquad}%
+    \setbox1\hbox{\qquad\@fctpositionsigfont#3\qquad}%
     \ifdim\wd0>\wd1%
       \def\@fctwd{\wd0}%
     \else
@@ -154,8 +154,8 @@
   \begin{minipage}[t]{\@fctwd}%
     \centering%
     \rule{\@fctwd}{0.5pt}%
-    \\[0.5ex]\@fcthookauthor{\@authorsignaturefont#2}%
-    \\[0.5ex]{\@positionsignaturefont#3}%
+    \\[0.5ex]\@fcthookauthor{\@fctauthorsigfont#2}%
+    \\[0.5ex]{\@fctpositionsigfont#3}%
   \end{minipage}%
 }
 

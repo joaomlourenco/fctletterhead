@@ -47,13 +47,15 @@
 \hypersetup{allcolors=blue!65!black}
 % \geometry{hmargin=2.0cm,vmargin=2.5cm}
 
-\newcommand*{\thePackage}{\texttt{novafctletterhead}}
+\newcommand*{\thePackage}{\texttt{\novafctletterheadname}}
 
 \fcttitle{O pacote \LaTeX\ \thePackage}
 \fctauthor{João M. Lourenço, Professor Associado}
-% \fctauthor{John Doe, Professor Auxiliar}
-% \fctauthor{Alice Doe, Professora Catedrático}
-\authorsignaturefont{\LARGE\calligra}
+% \fctauthor{John Doe, Professor Auxiliar}      % descomentar para ver múltiplas assinaturas
+% \fctauthor{Alice Doe, Professora Catedrático} % descomentar para ver múltiplas assinaturas
+\date{\novafctdate\ \ (v.\ \novafctversion)}
+\fctauthorsigfont{\LARGE\calligra}
+\fctpositionsigfont{\scriptsize}
 
 \title{\theTitle}
 \author{\theAuthor}
@@ -121,7 +123,10 @@ Depois, ainda no preâmbulo, deverá configurar os seus dados e os do seu depart
     \verb+\fctext+   & Este comando recebe como argumento uma extensão telefónica, a colocar no rodapé à direita do telefone. \textbf{\textsl{Se omitido será apresentado apenas o número de telefone (sem extensão).}}\\
     \verb+\fctemail+  & Este comando recebe como argumento um email, a colocar no rodapé por baixo do telefone/extensão. \textbf{\textsl{Se omitido nada será apresentado.}}\\
     \verb+\fcturl+   & Este comando recebe como argumento um url, a colocar no rodapé por baixo do email. \textbf{\textsl{Se omitido nada será apresentado.}}\\
+    \verb+fcttitle+   & Título do documento.\\
     \verb+\fctauthor+     & Este comando recebe como argumento o nome do autor e, opcionalmente, o título/posição, a colocar na zona de assinatura.  \textbf{\textsl{Se omitido nada será apresentado.  Se usado múltiplas vezes, criará zonas de assinatura para cada um dos autores.}}\\
+    \verb+\fctauthorsigfont+  &  Configurar a fonte para escrever o(s) nome(s) do(s) autor(es).\\
+    \verb+\fctpositionsigfont+  &  Configurar a fonte para escrever a(s) posições(s) do(s) autor(es).\\
   \end{xltabular}
 \egroup
 
@@ -154,7 +159,8 @@ A zona de assinatura que termina este documento, localizada em baixo à direita,
 
 \begin{verbatim}
   \fctauthor{João M. Lourenço, Professor Associado}
-  \authorsignaturefont{\LARGE\calligra}
+  \fctauthorsigfont{\LARGE\calligra}
+  \fctpositionsigfont{\scriptsize}
   ...
   \fctsignature{r}{1.5cm}
 \end{verbatim}
