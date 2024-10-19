@@ -42,6 +42,8 @@
 
 \newif\iffcteverypage
 \DeclareOption{everypage}{\fcteverypagetrue}
+\newif\iffctblue
+\DeclareOption{blue}{\fctbluetrue}
 \newif\iffctopensans
 \DeclareOption{opensans}{\fctopensanstrue}
 \DeclareOption*{\PackageWarning{letterheadfct}{Unknown ‘\CurrentOption’}}
@@ -50,9 +52,18 @@
 \newcommand*{\@fctsep}{2.4cm}
 
 \iffctopensans
-\IfPackageLoadedTF{opensans}{}{\RequirePackage[default,oldstyle,scale=0.95]{opensans}}
+  \IfPackageLoadedTF{opensans}{}{\RequirePackage[default,oldstyle,scale=0.95]{opensans}}
 \fi
 \IfPackageLoadedTF{xcolor}{}{\RequirePackage[svgnames]{xcolor}}
+\iffctblue
+  \definecolor{fctblue}{RGB}{22,93,149}
+  \RequirePackage{titlesec} 
+  \titleformat{\section}
+    {\color{fctblue}\normalfont\Large\bfseries}
+    {\color{fctblue}\thesection}{1em}{}
+  \AddToHook{cmd/abstractname/before}{\color{fctblue}}
+  % \AddToHook{cmd/@title/before}{\color{fctblue}}
+\fi
 \IfPackageLoadedTF{graphicx}{}{\RequirePackage{graphicx}}
 \IfPackageLoadedTF{tikz}{}{\RequirePackage{tikz}}
 \IfPackageLoadedTF{hyperref}{}{\RequirePackage[colorlinks]{hyperref}}

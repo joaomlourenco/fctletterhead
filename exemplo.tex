@@ -9,9 +9,8 @@
 % Configuração do pacote "novafctletterhead"
 %-------------------------------------------------------------
 % \usepackage{novafctletterhead}
-\usepackage[everypage,opensans]{novafctletterhead}
+\usepackage[everypage,opensans,blue]{novafctletterhead}
 % opensans é uma das novas fontes oficiais para a NOVA FCT
-
 
 % \fctdepartment{Departamento de\\Ciência dos Materiais}{Department of\\Materials Science}
 % \fctdepartment{Departamento de\\Ciências Sociais Aplicadas}{Department of\\Applied Social Sciences}
@@ -44,7 +43,8 @@
 \usepackage[portuguese]{babel}
 \usepackage{xltabular}
 \usepackage[colorlinks]{hyperref}
-\hypersetup{allcolors=blue!65!black}
+\providecolor{fctblue}{RGB}{22,93,149}
+\hypersetup{allcolors=fctblue}
 % \geometry{hmargin=2.0cm,vmargin=2.5cm}
 
 \newcommand*{\thePackage}{\texttt{\novafctletterheadname}}
@@ -54,7 +54,7 @@
 % \fctauthor{John Doe, Professor Auxiliar}      % descomentar para ver múltiplas assinaturas
 % \fctauthor{Alice Doe, Professora Catedrático} % descomentar para ver múltiplas assinaturas
 \date{\novafctdate\ \ (v.\ \novafctversion)}
-\fctauthorsigfont{\LARGE\calligra}
+\fctauthorsigfont{\LARGE\color{fctblue}\calligra}
 \fctpositionsigfont{\scriptsize}
 
 \title{\theTitle}
